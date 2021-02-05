@@ -1,0 +1,339 @@
+// RESPONSIVE BREAKPOINTS VARS
+
+$bp-largest: 75em; // 1200px/16px(font-root)
+$bp-large: 62.5em; // 1000px
+$bp-medium: 37.5em; // 600px
+
+*:root {
+  --play: "Playfair Display", serif;
+  --mont: "Montserrat", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%;
+  }
+}
+
+.container {
+  background-color: #eee;
+  min-height: 100vh;
+  margin: 5rem 20rem;
+  display: grid;
+  grid-template-columns: repeat(5, [col-start] 1fr [col-end]);
+  grid-auto-rows: min-content;
+  gap: 2rem;
+
+  @media only screen and (max-width: $bp-largest) {
+    grid-template-columns: repeat(4, [col-start] 1fr [col-end]);
+    margin: 2rem 5rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(3, [col-start] 1fr [col-end]);
+    margin: 1rem;
+  }
+
+  &__heading-1 {
+    font-family: var(--play);
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 6.4rem;
+    color: #000;
+    grid-column: col-start 1 / -1;
+  }
+
+  &__text-box {
+    display: flex;
+    align-items: flex-start;
+    grid-column: col-start 1 / col-end 3;
+  }
+
+  &__icon {
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+  }
+
+  &__text {
+    font-family: var(--mont);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #4f4f4f;
+  }
+
+  &__img {
+    width: 100%;
+    grid-column: col-start 1 / -1;
+  }
+
+  &__heading-2 {
+    font-family: var(--play);
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    color: #333;
+
+    grid-column: col-start 1 / col-end 1;
+  }
+
+  &__heading-3 {
+    font-family: var(--play);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: #333;
+    grid-column: col-start 1 / col-end 1;
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-column: col-start 1 / -1;
+    }
+  }
+
+  &__source {
+    grid-column: col-start 1 / col-end 3;
+    display: flex;
+    font-family: var(--mont);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #bdbdbd;
+    margin-top: 5rem;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: currentColor;
+  }
+}
+
+.card {
+  grid-column: col-start 5 / col-end 5;
+  grid-row: 4 / span 7;
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @media only screen and (max-width: $bp-largest) {
+    grid-column: col-start 4 / col-end 4;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    /* AT THIS BP A GRID WOULD BE BETTER THAN FLEXBOX IMO */
+
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+    display: grid;
+    padding: 1rem;
+    justify-content: stretch;
+    gap: 2rem 0;
+
+    &__mobile {
+      &-1 {
+        grid-column: 1 / 2;
+      }
+
+      &-2 {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+      }
+
+      &-3 {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+      }
+
+      &-4 {
+        grid-column: 3 / 4;
+        grid-row: 2 / 3;
+      }
+    }
+  }
+
+  &__details {
+    display: grid;
+    gap: 0 1.5rem;
+    align-items: center;
+    justify-content: start;
+  }
+
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    fill: #4f4f4f;
+
+    &-orange {
+      fill: #f2994a;
+    }
+  }
+
+  &__info {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-family: var(--mont);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    text-transform: uppercase;
+    color: #bdbdbd;
+  }
+
+  &__text {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    font-family: var(--mont);
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: #333333;
+
+    &-orange {
+      color: #f2994a;
+    }
+  }
+}
+
+.item {
+  /* THIS IS A CUSTOM CHECKBOX WITH SOME SIBLINGS */
+
+  grid-column: col-start 1 / col-end 3;
+  display: flex;
+  align-items: start;
+
+  &__custom-checkbox {
+    position: relative;
+    cursor: pointer;
+    margin-right: 2rem;
+  }
+
+  &__checkbox {
+    opacity: 0;
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+
+    /* MAKING THE MIDDLE CHECK WITH AN AFTER + AN CSS ENTITY */
+
+    &::after {
+      content: "\2714";
+      position: absolute;
+      opacity: 0;
+      font-size: 1.5rem;
+      color: rgba(155, 69, 69, 0.7);
+      transition: all 0.2s ease-in;
+    }
+  }
+
+  /* SOME NICE EFFECTS */
+
+  &:hover &__checkbox + &__checkmark {
+    border: 1px solid #e3e3e3;
+  }
+
+  &__checkbox:checked + &__checkmark {
+    box-shadow: 0px 0px 2px rgba(155, 69, 69, 0.7);
+  }
+
+  /* DISPLAYING THE CHECK */
+
+  &__checkbox:checked + &__checkmark::after {
+    opacity: 1;
+  }
+
+  &__text {
+    font-family: var(--mont);
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    color: #333;
+  }
+}
+
+.instruction {
+  grid-column: col-start 1 / col-end 3;
+  display: grid;
+  gap: 0 1.5rem;
+
+  &__number {
+    font-family: var(--play);
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    width: 36px;
+    height: 36px;
+    color: #ffffff;
+    border-radius: 6px;
+    background-color: orange;
+    grid-row: 1 / 2;
+    text-align: center;
+  }
+
+  &__text {
+    font-family: var(--mont);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: #000;
+    grid-row: 1 / 3;
+  }
+}
+
+.footer {
+  grid-column: col-start 1 / -1;
+  margin-top: 10rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  color: #a9a9a9;
+  display: flex;
+  justify-content: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    margin-top: 5rem;
+  }
+}
+
+/* UTILITY CLASS */
+
+.bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}
